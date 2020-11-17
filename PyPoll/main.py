@@ -11,8 +11,8 @@ output_path = os.path.join("output", "results.txt")
 # opening the cvs file to work with
 with open(electionpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
-    # skipping the first row
-    next(csv_reader, None)
+    # getting the header
+    csv_header = next(csv_reader)
 
     # setting variables
     num_votes = 0

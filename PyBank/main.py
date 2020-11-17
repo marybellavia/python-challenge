@@ -8,7 +8,7 @@ budgetpath = os.path.join("Resources", "budget_data.csv")
 # Specify the file to write to
 output_path = os.path.join("output", "new.txt")
 
-# setting variables
+# setting all my variables
 num_of_months = 0
 total_profit_loss = 0
 total_change = None
@@ -18,14 +18,18 @@ increase_mon = None
 decrease_num = 0
 decrease_mon = None
 
+# opening the cvs file to work with
 with open(budgetpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
-    next(csv_reader, None)
+    # getting the header
+    csv_header = next(csv_reader)
 
+    # looping through my cvs file
     for row in csv_reader:
         # adding to the num_of_months variable for each loop
         num_of_months += 1
-        # adding total profit_
+        
+        # adding to profit/loss total
         total_profit_loss += int(row[1])
 
         if total_change != None:
