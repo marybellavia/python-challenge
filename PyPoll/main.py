@@ -11,7 +11,8 @@ output_path = os.path.join("output", "results.txt")
 # opening the cvs file to work with
 with open(electionpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
-    # getting the header
+    
+    # getting the header and skipping header row
     csv_header = next(csv_reader)
 
     # setting variables
@@ -20,6 +21,7 @@ with open(electionpath) as csvfile:
 
     # iterating through the data in the cvs file
     for row in csv_reader:
+        
         # counting number of votes
         num_votes += 1
 
@@ -39,22 +41,23 @@ with open(electionpath) as csvfile:
     # finding popular vote winner
     winner = max(candidates_dict, key=candidates_dict.get)
 
-    # printing results
+    # printing results in terminal
     print(f"""Election Results
 -------------------------
 Total Votes: {num_votes}
 -------------------------""")
-    # printing results by looping through dicitonary
+    # printing results by looping through dicitonary in terminal
     for key in candidates_dict:
         print(f"{key}: {round(((candidates_dict[key] / num_votes)*100),3)}% ({candidates_dict[key]})")
-    # final print of popular vote winner
+    # final print of popular vote winner in terminal
     print(f"""-------------------------
 Winner: {winner}
 -------------------------""")
 
-# Open the file using "write" mode. Specify the variable to hold the contents
+# writing in file, open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'w', newline='') as newfile:
 
+    # writing to the file
     newfile.write(f"""Election Results
 -------------------------
 Total Votes: {num_votes}

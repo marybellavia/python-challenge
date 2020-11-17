@@ -32,7 +32,10 @@ with open(budgetpath) as csvfile:
         # adding to profit/loss total
         total_profit_loss += int(row[1])
 
+        # conditional to test if this is the first row of data or not
         if total_change != None:
+
+            # getting a value for current row & calculating change
             current_row = int(row[1])
             change = current_row - prev_row
 
@@ -53,18 +56,19 @@ with open(budgetpath) as csvfile:
             prev_row = int(row[1])
             total_change = 0
 
-    # calculating average change and final print
+    # calculating average change
     avg_change = round(total_change / (num_of_months-1),2)
+    
+    # printing to terminal
     print(f"""Financial Analysis
 ----------------------------
 Total Months: {num_of_months}
 Total: ${total_profit_loss}
 Average  Change: ${avg_change}
-net change {total_change}
 Greatest Increase in Profits: {increase_mon} (${increase_num})
 Greatest Decrease in Profits: {decrease_mon} (${decrease_num})""")
 
-# Open the file using "write" mode. Specify the variable to hold the contents
+# printing to file, open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'w', newline='') as newfile:
 
     newfile.write(f"""Financial Analysis
@@ -72,6 +76,5 @@ with open(output_path, 'w', newline='') as newfile:
 Total Months: {num_of_months}
 Total: ${total_profit_loss}
 Average  Change: ${avg_change}
-net change {total_change}
 Greatest Increase in Profits: {increase_mon} (${increase_num})
 Greatest Decrease in Profits: {decrease_mon} (${decrease_num})""")
